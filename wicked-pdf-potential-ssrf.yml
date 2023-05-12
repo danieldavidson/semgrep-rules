@@ -28,8 +28,8 @@ rules:
       subcategory:
         - audit
       cwe:
-        - "CWE 74: Improper Neutralization of Special Elements in Output Used by
-          a Downstream Component ('Injection')"
+        - "CWE 74: Improper Neutralization of Special Elements in Output Used
+        by a Downstream Component ('Injection')"
       confidence: LOW
       impact: MEDIUM
       likelihood: LOW
