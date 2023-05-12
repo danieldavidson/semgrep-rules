@@ -1,0 +1,30 @@
+rules:
+  - id: wicked-pdf-basic-usage
+    pattern: |
+      respond_to do |$FORMAT|
+        ...
+        $FORMAT.pdf do
+          ...
+          render ..., pdf: ..., ...
+          ...
+        end
+      end
+    message: Semgrep found a match
+    languages:
+      - ruby
+    severity: WARNING
+    metadata:
+      category: security
+      subcategory:
+        - audit
+      cwe:
+        - "CWE 74: Improper Neutralization of Special Elements in Output Used by
+          a Downstream Component ('Injection')"
+      confidence: LOW
+      impact: MEDIUM
+      likelihood: LOW
+      technology:
+        - rails
+      references:
+        - https://github.com/mileszs/wicked_pdf#basic-usage
+

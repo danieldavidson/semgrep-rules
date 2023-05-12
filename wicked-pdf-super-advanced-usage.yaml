@@ -1,0 +1,23 @@
+rules:
+  - id: wicked-pdf-super-advanced-usage
+    patterns:
+      - pattern: WickedPdf.new.$PDFFROM(...)
+    message: Semgrep found a match
+    languages:
+      - ruby
+    severity: WARNING
+    metadata:
+      category: security
+      subcategory:
+        - audit
+      cwe:
+        - "CWE 74: Improper Neutralization of Special Elements in Output Used by
+          a Downstream Component ('Injection')"
+      confidence: LOW
+      impact: MEDIUM
+      likelihood: LOW
+      technology:
+        - rails
+      references:
+        - https://github.com/mileszs/wicked_pdf#super-advanced-usage
+
