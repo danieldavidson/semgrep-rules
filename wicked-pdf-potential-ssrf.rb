@@ -1,3 +1,32 @@
+respond_to do |format|
+  format.html
+  format.pdf do
+    render pdf: "file_name"
+  end
+end
+
+respond_to do |format|
+  format.pdf do
+    render :pdf => "my_pdf_name.pdf",
+      :disposition => "inline",
+      :template => "controller_name/show.pdf.erb",
+      :layout => "pdf_layout.html"
+  end 
+
+  format.html
+end
+
+respond_to do |format|
+  format.html
+  format.pdf do
+  render pdf: [@post.id, @post.name].join('-'),
+    template: "posts/show.html.erb",
+    formats: [:html],
+    disposition: :inline,
+    layout: 'pdf'
+  end
+end
+
 # create a pdf from a string
 pdf = WickedPdf.new.pdf_from_string('<h1>Hello There!</h1>')
 
@@ -13,8 +42,8 @@ pdf = WickedPdf.new.pdf_from_string(
   render_to_string('templates/pdf', layout: 'pdfs/layout_pdf.html'),
   footer: {
     content: render_to_string(
-  		'templates/footer',
-  		layout: 'pdfs/layout_pdf.html'
+  	  'templates/footer',
+  	  layout: 'pdfs/layout_pdf.html'
   	)
   }
 )
