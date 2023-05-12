@@ -1,6 +1,6 @@
 rules:
   - id: wicked-pdf-potential-ssrf
-    patterns-either:
+    pattern-either:
       - pattern: WickedPdf.new.$PDFFROM(...)
       - pattern: |
           respond_to do |$FORMAT|
