@@ -42,8 +42,8 @@ pdf = WickedPdf.new.pdf_from_string(
   render_to_string('templates/pdf', layout: 'pdfs/layout_pdf.html'),
   footer: {
     content: render_to_string(
-  		'templates/footer',
-  		layout: 'pdfs/layout_pdf.html'
+  	  'templates/footer',
+  	  layout: 'pdfs/layout_pdf.html'
   	)
   }
 )
