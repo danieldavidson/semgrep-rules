@@ -1,0 +1,39 @@
+rules:
+  - id: pdfkit-potential-ssrf
+    pattern-either:
+      - pattern: |
+          $KIT = PDFKit.new(...)
+          ...
+          $KIT.to_pdf
+      - pattern: PDFKit.new(...).to_pdf
+      - pattern: |
+          $KIT = PDFKit.new(...)
+          ...
+          $KIT.to_file
+      - pattern: PDFKit.new(...).to_file
+    message: |
+      PDFKit renders page content on the server by saving HTML and assets
+      to temporary files on disk, then executing wkhtmltopdf to convert that
+      HTML to a PDF file.
+
+      If you incorporate user-defined content into the HTML to be converted to
+      PDF, it is highly recommended that you sanitize it first. Malicious
+      content could be used to make server-side requests and expose sensitive
+      data.
+    languages:
+      - ruby
+    severity: WARNING
+    metadata:
+      category: security
+      subcategory:
+        - audit
+      cwe:
+        - "CWE 74: Improper Neutralization of Special Elements in Output Used
+        by a Downstream Component ('Injection')"
+      confidence: LOW
+      impact: MEDIUM
+      likelihood: LOW
+      technology:
+        - rails
+      references:
+        - https://github.com/mileszs/wicked_pdf
